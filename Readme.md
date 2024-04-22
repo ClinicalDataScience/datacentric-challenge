@@ -35,7 +35,7 @@ kernels  = [[3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3]]
 strides  = [[1, 1, 1], [2, 2, 2], [2, 2, 2], [2, 2, 2], [2, 2, 2], [1, 2, 1]]
 ```
 
-The model code is available in `autopet3/fixed/dynunet.py`. This code is fixed and should not be altered. It contains a [lightning module](https://lightning.ai/docs/pytorch/stable/common/lightning_module.html), which configures the basic model architecture, the optimizer, the learning rate scheduler and the sliding window function. Using the config, you have access to the learning rate and the sliding window batch size. The learning rate scheduler is automatically calculated based on the number of epochs. Please note that on a single GPU with a batch size of 2, approximately 8500MB of VRAM is required.
+The model code is available in [autopet3/fixed/dynunet.py](autopet3/fixed/dynunet.py). This code is fixed and should not be altered. It contains a [lightning module](https://lightning.ai/docs/pytorch/stable/common/lightning_module.html), which configures the basic model architecture, the optimizer, the learning rate scheduler and the sliding window function. Using the config, you have access to the learning rate and the sliding window batch size. The learning rate scheduler is automatically calculated based on the number of epochs. Please note that on a single GPU with a batch size of 2, approximately 8500MB of VRAM is required.
 
 ### Training
 
@@ -48,10 +48,10 @@ We provide a simple training routine to get you started right away. The routine 
 
 #### The config
 
-We use a YAML file to control all configuration parameter for the model, the datamodule and the training and testing procedure. A default config is provided in `config/config.yml`. The three main sections are `data`, `model`, and `trainer`:
+We use a YAML file to control all configuration parameter for the model, the datamodule and the training and testing procedure. A default config is provided in [config/test_config.yml](config/test_config.yml). The three main sections are `data`, `model`, and `trainer`:
 
 - `data`: All arguments you want to pass to the DataModule ie. data_dir, num_worker (cf. [autopet3/datacentric/dataloader.py](autopet3/datacentric/dataloader.py))
-- `model`: Model arguments (lr, sw_batch_size, pretrained and ckpt_path)
+- `model`: Model arguments (lr, sw_batch_size, pretrained, resume and ckpt_path)
 - `trainer`: Supports all trainer args, except for callbacks and logger which belong to the fixed code
 
 #### The datamodule
@@ -62,7 +62,7 @@ The datamodule in `autopet3/datacentric/dataloader.py` describes your datapipeli
 
 ##### Setup
 
-If you compute your experiment on a cluster infrastructure you sometimes need to set up environment variables. You can do this by changing the setup hook in `autopet3.datacentric.setup`. In this examplary implemention, I needed to set the environment variable `SLURM_JOB_NAME` to "bash", to be able to run the code on a slurm cluster routine from a jupyter-notebook. Adapt this function to your own needs.
+If you compute your experiment on a cluster infrastructure you sometimes need to set up environment variables. You can do this by changing the setup hook in [autopet3/datacentric/setup.py](autopet3/datacentric/setup.py). In this examplary implemention, I needed to set the environment variable `SLURM_JOB_NAME` to "bash", to be able to run the code on a slurm cluster routine from a jupyter-notebook. Adapt this function to your own needs.
 
 ```python
 def setup() -> None:
@@ -82,7 +82,7 @@ def get_logger(config: Union[DictConfig, ListConfig]) -> Logger:
 
 ## Example implementation - Datacentric baseline
 
-We want participants to focus on the data. We anticipated data-centric modification at three points in the training workflow and give in the following examples for each of them.
+We want participants to focus on the data. Therefore, we anticipated data-centric modification at three points in the training workflow and give in the following examples for each of them.
 
 #### Adding a datamodule
 
@@ -125,15 +125,11 @@ You can find the `get_transforms` function in [autopet3/datacentric/transforms.p
 
 #### Adding a preprocessing script
 
-A preprocessing script can be used to clean the dataset, remove outlier or generally alter the dataset. You can find an example in scripts/preprocess_augmentations.py. Since the preprocessing and loading of these large files needs a lot of time we improve speed by precalculation transformations and sampling. This should be seen as exemplary code for a preprocessing script.
-
-Preprocessing scripts play a crucial role in data cleaning and preparation, especially when dealing with large datasets. Here you can perform various tasks such as data cleaning, outlier removal, and dataset augmentation. An illustrative example of such a script can be found in `scripts/preprocess_augmentations.py`.
-
-Due to the time-consuming nature of preprocessing and loading large datasets, we precalculate transformations and sampling. This approach speeds up the training time by a large amount. The provided script serves as an exemplary demonstration of how to implement preprocessing tasks.
+A preprocessing script can be used to clean the dataset, remove outlier or generally alter the dataset. An illustrative example of such a script can be found in [scripts/preprocess_augmentations.py](scripts/preprocess_augmentations.py). Due to the time-consuming nature of preprocessing and loading large datasets, we precalculate transformations and sampling. This approach speeds up the training time by a large amount. The provided script serves as an exemplary demonstration of how to implement preprocessing tasks.
 
 #### Adding a postprocessing method
 
-In the predict function predict.py you see how to integrate a postprocessing function. Here we use test-time augmentation (TTA) to improve model performance. We use fewer random rotations to obtain a faster prediction time. We allow for ensembling even it's not strictly datacentric, but it can be considered best practice in a challenge setup. 
+The predict function [predict.py](predict.py) integrates a postprocessing function. Test-time augmentation (TTA) was used to improve model performance. In addition, fewer random rotations were used to obtain a faster prediction time. We allow for ensembling even it's not strictly datacentric, but it can be considered best practice in a challenge setup. 
 There are a lot of post calibration techniques, etc, which we did not explicitly forbid. If any of these methods contribute more to the performance than your data methods please be fair and submit your method to award category 1 only.
 
 
