@@ -50,7 +50,6 @@ class NNUnet(pl.LightningModule):
 
         # formulated as DiceBCE and batch is True according to 3d_fullres plans
         self.loss_fn = DiceCELoss(sigmoid=True, batch=True, include_background=True)
-        # Metrics we track: Dice and F1 score as fast alternative to FPvol and FNvol (this is not exact!)
         self.dice_metric = DiceMetric(include_background=False, reduction="mean", get_not_nans=False, ignore_empty=True)
         self.confusion = ConfusionMatrixMetric(reduction="mean", metric_name="f1 score")
         self.test_aggregator = AutoPETMetricAggregator()
