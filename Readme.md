@@ -56,7 +56,7 @@ We use a YAML file to control all configuration parameter for the model, the dat
 
 #### The datamodule
 
-The datamodule in `autopet3/datacentric/dataloader.py` describes your datapipeline and can be freely edited by you. It's a basic [lightning datamodule](https://lightning.ai/docs/pytorch/stable/data/datamodule.html) where you should implement your own versions of the functions setup, train_dataloader and val_dataloader. The current file implements our baseline approach (see the baseline implementation).
+The datamodule in [autopet3/datacentric/dataloader.py](autopet3/datacentric/dataloader.py) describes your datapipeline and can be freely edited by you. It's a basic [lightning datamodule](https://lightning.ai/docs/pytorch/stable/data/datamodule.html) where you should implement your own versions of the functions setup, train_dataloader and val_dataloader. The current file implements our baseline approach (see the baseline implementation).
 
 #### Training routine hooks
 
