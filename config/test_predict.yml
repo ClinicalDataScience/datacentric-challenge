@@ -1,0 +1,33 @@
+data:
+  data_dir: test/data
+  data_dir_preprocessed: test/preprocessed
+  splits_file: test/data/splits_final.json
+  fold: 0
+  target_shape: [ 128, 160, 112 ]
+  batch_size: 2
+  suffix: .npz
+  num_workers_train: 0
+  num_workers_val: 0
+
+logger:
+  experiment: lightning_logs
+  name: test_example2
+
+model:
+  pretrained: true
+  resume: false
+  ckpt_path: test/epoch=581_fold0.ckpt
+  lr: 0.001
+  sw_batch_size: 4
+  seed: 42
+
+trainer:
+  max_steps: 10
+  check_val_every_n_epoch: 5
+  #limit_val_batches: 0 #disable validation
+  precision: bf16-mixed #32, 16
+  accelerator: gpu
+  devices: 1
+  deterministic: true
+  strategy: auto
+  sync_batchnorm: true #false

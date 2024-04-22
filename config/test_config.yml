@@ -1,0 +1,31 @@
+data:
+  data_dir: test/data
+  splits_file: test/data/splits_final.json
+  fold: 0
+  target_shape: [ 128, 160, 112 ]
+  batch_size: 2
+  suffix: .nii.gz
+  num_workers_train: 0
+  num_workers_val: 0
+
+logger:
+  experiment: lightning_logs
+  name: test_example1
+
+model:
+  pretrained: false
+  resume: false
+  ckpt_path:
+  lr: 0.001
+  sw_batch_size: 4
+  seed: 42
+
+trainer:
+  max_steps: 10
+  check_val_every_n_epoch: 5
+  precision: bf16-mixed #32, 16
+  accelerator: gpu
+  devices: 1
+  deterministic: true
+  strategy: auto
+  sync_batchnorm: true #false
