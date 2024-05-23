@@ -15,7 +15,7 @@ Running a data-centric challenge is difficult since it is easy to cheat and diff
 - Create a virtualenv via venv or virtualenv e.g.`virtualenv venv`.
 - Activate the venv via `source venv/bin/activate`
 - Install the package via `pip install -e .`
-- Download the [dataset](https://it-portal.med.uni-muenchen.de/autopet/Autopet.tgz) and unzip it to a location of your choice
+- Download the [dataset](https://it-portal.med.uni-muenchen.de/autopet/Autopet_v1.1.tgz) and unzip it to a location of your choice
 - To validate the setup, please download the test folder via `git lfs pull` and then run `python run.py train --config=config/test_config.yml` (perhaps you need to modify the devices in the config)
 
 ## How it works
