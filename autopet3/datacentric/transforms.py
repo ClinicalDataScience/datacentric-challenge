@@ -74,10 +74,10 @@ def get_transforms(
     resample: bool = False,
     load: bool = True,
     spacing: Tuple[float, float, float] = (2.0364201068878174, 2.0364201068878174, 3.0),
-    ct_percentiles: Tuple[float, float] = (-831.9483642578125, 1127.5189013671843),
-    pet_percentiles: Tuple[float, float] = (1.0438873767852783, 51.595245361328125),
-    pet_norm: torch.Tensor = torch.Tensor((7.089671984867433, 8.01080984806995)),
-    ct_norm: torch.Tensor = torch.Tensor((107.77672799269146, 286.1725548247846)),
+    ct_percentiles: Tuple[float, float] = (-832.062744140625, 1127.758544921875),
+    pet_percentiles: Tuple[float, float] = (1.0433332920074463, 51.211158752441406),
+    pet_norm: torch.Tensor = torch.Tensor((7.063827929027176, 7.960414805306728)),
+    ct_norm: torch.Tensor = torch.Tensor((107.73438968591431, 286.34403119451997)),
 ) -> mt.Compose:
     """The get_transforms function generates a series of transforms based on the stage and target shape.
     It performs loading, resampling, shifting intensity ranges, and applying various augmentation techniques such

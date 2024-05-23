@@ -64,10 +64,10 @@ class PredictModel:
 
         """
         # Define the percentile values for CT and PET images
-        ct_percentiles = (-831.9483642578125, 1127.5189013671843)
-        ct_norm = torch.Tensor((107.77672799269146, 286.1725548247846))
-        pet_percentiles = (1.0438873767852783, 51.595245361328125)
-        pet_norm = torch.Tensor((7.089671984867433, 8.01080984806995))
+        ct_percentiles = (-832.062744140625, 1127.758544921875)
+        ct_norm = torch.Tensor((107.73438968591431, 286.34403119451997))
+        pet_percentiles = (1.0433332920074463, 51.211158752441406)
+        pet_norm = torch.Tensor((7.063827929027176, 7.960414805306728))
 
         # Define the spacing for the images
         spacing = (2.0364201068878174, 2.03642010688781740, 3.0)
