@@ -54,7 +54,7 @@ class RandomPatientDataset(Dataset):
 
 
 if __name__ == "__main__":
-    data_dir = "../../test/preprocessed"
+    data_dir = "../../test/preprocessed/val"
     splits_file = "../../test/data/splits_final.json"
     split = read_split(splits_file, 0)["train"]
     transform = None
