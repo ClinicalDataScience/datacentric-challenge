@@ -12,11 +12,11 @@ Running a data-centric challenge is difficult since it is easy to cheat and diff
 
 - Make sure you have a valid >=python3.8 installation.
 - Download the repository i.e. `git clone`.
-- Create a virtualenv via venv or virtualenv e.g.`virtualenv venv`.
+- Create a virtualenv via venv or virtualenv e.g. `virtualenv venv`.
 - Activate the venv via `source venv/bin/activate`
 - Install the package via `pip install -e .`
-- Download the [dataset](https://it-portal.med.uni-muenchen.de/autopet/Autopet_v1.1.tgz) and unzip it to a location of your choice
-- To validate the setup, please download the test folder via `git lfs pull` (if git lfs does not work, use `bash download_test_data.sh`) and then run `python run.py train --config=config/test_config.yml` (perhaps you need to modify the devices in the config)
+- To validate the setup, please download the test data via `bash download_test_data.sh` and then run `python run.py train --config=config/test_config.yml` (perhaps you need to modify the devices in the config)
+- Download the [dataset](https://it-portal.med.uni-muenchen.de/autopet/Autopet_v1.1.tgz) and unzip it to a location of your choice and start experimenting
 
 ## How it works
 
