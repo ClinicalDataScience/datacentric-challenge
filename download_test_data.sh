@@ -52,11 +52,11 @@ declare -a arr_preproc=(
 
 for f in "${arr_orig[@]}"; do
     echo "Download: ${f}"
-    curl -o "test/data/${f}" "https://syncandshare.lrz.de/dl/fiCJ6mQcjefMTQdKJsBSys/${f// /%20}"
+    curl --create-dirs -o "test/data/${f}" "https://syncandshare.lrz.de/dl/fiCJ6mQcjefMTQdKJsBSys/${f// /%20}"
 done
 
 
 for f in "${arr_preproc[@]}"; do
     echo "Download: ${f}"
-    curl -o "test/${f}" "https://syncandshare.lrz.de/dl/fiB6N4UaiWJ8m88nPkoN5G/${f// /%20}"
+    curl --create-dirs -o "test/${f}" "https://syncandshare.lrz.de/dl/fiB6N4UaiWJ8m88nPkoN5G/${f// /%20}"
 done
