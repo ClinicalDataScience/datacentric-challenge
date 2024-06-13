@@ -11,8 +11,9 @@ authors = [
   { name = "Jakob Dexl"}
 ]
 
-[tool.setuptools]
-packages = ["autopet3"]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["autopet3*"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
