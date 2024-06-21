@@ -58,19 +58,19 @@ class AutoPETMetricAggregator:
                                              a NaN value.
 
         """
-        # Check if any of the values are NaN
-        if (
-            np.isnan(self.false_positives).all()
-            or np.isnan(self.false_negatives).all()
-            or np.isnan(self.dice_scores).all()
-        ):
-            return {"false_positives": np.nan, "false_negatives": np.nan, "dice_score": np.nan}
-        # Compute the mean of the values
-        return {
-            "false_positives": np.nanmean(self.false_positives),
-            "false_negatives": np.nanmean(self.false_negatives),
-            "dice_score": np.nanmean(self.dice_scores),
+        # Check if each metric is all NaN
+        fp_all_nan = np.isnan(self.false_positives).all()
+        fn_all_nan = np.isnan(self.false_negatives).all()
+        ds_all_nan = np.isnan(self.dice_scores).all()
+
+        # Prepare the result dictionary
+        result = {
+            "false_positives": np.nan if fp_all_nan else np.nanmean(self.false_positives),
+            "false_negatives": np.nan if fn_all_nan else np.nanmean(self.false_negatives),
+            "dice_score": np.nan if ds_all_nan else np.nanmean(self.dice_scores),
         }
+
+        return result
 
     @staticmethod
     def count_false_positives(prediction: np.ndarray, ground_truth: np.ndarray) -> float:
