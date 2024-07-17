@@ -60,7 +60,11 @@ class AutoPETDataModule(pl.LightningDataModule):
 
         """
         # Read the split information from the splits file
-        split = read_split(self.splits_file, self.fold)
+        if self.fold == "all":
+            split = read_split(self.splits_file, 0)
+            split["train"] += split["val"]
+        else: 
+            split = read_split(self.splits_file, self.fold)
 
         # Dataloader for preprocessed augmented data of example 2
         if self.suffix == ".npz":
